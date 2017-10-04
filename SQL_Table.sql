@@ -34,7 +34,6 @@ INSERT INTO `Community` (`Name`, `State`, `Country`, `SkillNeeded`, `UserComment
 ("Cidade de Deus", NULL, "Brazil", "Welding", null), 
 ("Phoenix", "Arizona", "United States", "Roofer", "Bring your own tools");
  
- 
 DROP TABLE IF EXISTS `Account_Community`;
 CREATE TABLE `Account_Community` (
   `AccountID` int(11) NOT NULL,
