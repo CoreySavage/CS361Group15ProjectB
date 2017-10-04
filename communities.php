@@ -33,16 +33,16 @@ if($mysqli->connect_errno) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!--Do we have a JPG logo?-->
-          <a class="navbar-brand" href="index.php"><img src="images/logo.gif" width="75px" height="30px"></a>
+          <!--Do we have a JPG logo? href="index.php"-->
+          <a class="navbar-brand">I'll Go</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <div>
             <ul class="nav navbar-nav">
-              <li><a href="index.php">I'll Go</a></li>
+<!--               <li>I'll Go</li> -->
               <li class="active"><a href="communities.php">Communities</a></li>
-              <li><a href="something.php">Something</a></li>
-              <li><a href="somethingelse.php">Something Else </a></li>
+              <!--<li><a href="something.php">Something</a></li>
+              <li><a href="somethingelse.php">Something Else </a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
             	<!--This is where we can to update Login/Logout features, profile page link, etc.-->
@@ -62,11 +62,11 @@ if($mysqli->connect_errno) {
         </div>
       </div>
     </nav>
-    <div class="header">
-      
+      <div class="container">
+        <div class="row">
+          <div class="header">
       <h1>Opportunities</h1>
     </div>
-    <div class="container">
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -93,8 +93,10 @@ while ($statement->fetch()) {
 $statement->close();
  ?>
       </table>
-    </div>
+        </div>
+      </div>
 <div class="container">
+  <div class="row">
   <form method="post" action="AddOpportunity.php">
   
     <fieldset>
@@ -108,6 +110,7 @@ $statement->close();
     </fieldset>  
   </form>
 </div>  
+  </div>
 
 
 

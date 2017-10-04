@@ -51,6 +51,31 @@ class NewAccountTestCases(unittest.TestCase):
                 text = textbox.get_attribute("value")
                 self.assertIn("Last Name", text)
 
+        def test_user_name_is_editable(self):
+                """Can the user name field be edited?"""
+                textbox = self.firefox.find_element_by_id("inputUsername")
+                time.sleep(1) #only so we can see what's happening
+                textbox.send_keys("testUserName")
+                text = textbox.get_attribute("value")
+                self.assertIn("testUserName", text)
+
+        def test_password_is_editable(self):
+                """Can the password field be edited?"""
+                textbox = self.firefox.find_element_by_id("inputPassword")
+                time.sleep(1) #only so we can see what's happening
+                textbox.send_keys("testPassword")
+                text = textbox.get_attribute("value")
+                self.assertIn("testPassword", text)
+
+        def test_checkbox_is_editable(self):
+                """Can the educator checkbox be edited?"""
+                checkbox = self.firefox.find_element_by_id("educator")
+                time.sleep(1) #only so we can see what's happening
+                self.assertTrue(not checkbox.is_selected())
+                checkbox.click()
+                self.assertTrue(checkbox.is_selected())
+               
+
 
     
 class CommunitiesTestCases(unittest.TestCase):
@@ -88,6 +113,31 @@ class CommunitiesTestCases(unittest.TestCase):
                 text = textbox.get_attribute("value")
                 self.assertIn("stateName", text)
 
+        def test_country_is_editable(self):
+                """Can the country field be edited?"""
+                textbox = self.firefox.find_element_by_name("Country")
+                time.sleep(1)
+                textbox.send_keys("countryName")
+                text = textbox.get_attribute("value")
+                self.assertIn("countryName", text)
+
+        def test_skill_needed_is_editable(self):
+                """Can the skill needed field be edited?"""
+                textbox = self.firefox.find_element_by_name("Skill")
+                time.sleep(1)
+                textbox.send_keys("specific skill")
+                text = textbox.get_attribute("value")
+                self.assertIn("specific skill", text)
+
+        def test_comments_is_editable(self):
+                """Can the comments field be edited?"""
+                textbox = self.firefox.find_element_by_name("Comment")
+                time.sleep(1)
+                testComment = "This string is being used to test the comment field."
+                textbox.send_keys(testComment)
+                text = textbox.get_attribute("value")
+                self.assertIn(testComment, text)
+
+               
 if __name__ == '__main__':
         unittest.main(verbosity=2)
-

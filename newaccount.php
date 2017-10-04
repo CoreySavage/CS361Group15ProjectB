@@ -50,15 +50,16 @@ Fall 2016
             <span class="icon-bar"></span>
           </button>
           <!--Do we have a JPG logo?-->
-          <a class="navbar-brand" href="index.php"><img src="images/logo.gif" width="75px" height="30px"></a>
+<!--           <a class="navbar-brand" href="index.php"><img src="images/logo.gif" width="75px" height="30px"></a> -->
+		<a class="navbar-brand">I'll Go</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <div>
             <ul class="nav navbar-nav">
-              <li><a href="index.php">I'll Go</a></li>
+<!--               <li><a href="index.php">I'll Go</a></li> -->
               <li><a href="communities.php">Communities</a></li>
-              <li><a href="something.php">Something</a></li>
-              <li><a href="somethingelse.php">Something Else </a></li>
+<!--               <li><a href="something.php">Something</a></li>
+              <li><a href="somethingelse.php">Something Else </a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
             	<!--This is where we can to update Login/Logout features, profile page link, etc.-->
@@ -80,29 +81,30 @@ Fall 2016
 	
 	<!--****  THIS IS WHERE WE CORRECT THE FORM ****-->
     <div class="container">
-      <form method="post" class="form-signin" id="createAcc">
+      <form method="post" action="createAccount.php" class="form-signin" id="createAcc">
+<!-- 	      action="createAccount.php" -->
         <span id="create_results"></span>
         <h2 class="form-signin-heading">Create New Account</h2>
 
         <div class="form-group">
-          <label for="inputFirstname">First Name:</label>
-            <input type="text" name="inputFirstname" id="inputFirstname" class="form-control" placeholder="firstname" required autofocus>
+          <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required autofocus>
             <span id="firstname_result"></span>
           </div>
         <div class="form-group">
-          <label for="inputLastname">Last Name:</label>
-            <input type="text" name="inputLastname" id="inputLastname" class="form-control" placeholder="lastname" required autofocus>
+          <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required autofocus>
             <span id="lastname_result"></span>
           </div>
 
         <div class="form-group">
-          <label for="inputUsername">User Name:</label>
-            <input type="text" name="inputUsername" id="inputUsername" class="form-control" placeholder="username" required autofocus>
+          <label for="username">User Name:</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
             <span id="username_result"></span>
           </div>
           <div class="form-group">
-            <label for="inputPassword">Password:  (Must be 6-18 characters)</label>
-            <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="password" required>
+            <label for="password">Password:  (Must be 6-18 characters)</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="password" required>
           </div>
           <div class="form-group">
             <label for="educator">Are you an Educator?:</label>
@@ -136,7 +138,7 @@ Fall 2016
 
     /* This Function queries the Account table to verify that the username is available */
     /* It is triggered while the user types in a username, it checks after each character is input */
-    $("#inputUsername").keyup(function(event) {
+    $("#username").keyup(function(event) {
        var username = $(this).val();
        $.post('check_username.php', {'username':username, 'type':'create'}, function(data) {
        $("#username_result").html(data); // check_username.php result
@@ -144,42 +146,41 @@ Fall 2016
     });
 
     /*  This function submits the account creation via an AJAX request  */
-    $(document).ready(function(){
-      $("#submit").click(function(){
-        var username = $("#inputUsername").val();
-        var password = $("#inputPassword").val();
-        if document.getElementById("#educator").checked = true {
-            var educator = $("#educator").val();
-        }
-        else {
-            var educator = 0;
-        }
-        var firstName = $("#inputFirstname").val();
-        var lastName = $("#inputLastname"
-).val();
-        if (educator < 0 || educator > 1){
+//     $(document).ready(function(){
+//       $("#submit").click(function(){
+//         var username = $("#inputUsername").val();
+//         var password = $("#inputPassword").val();
+//         if (document.getElementById("#educator").checked == true) {
+//             var educator = $("#educator").val();
+//         }
+//         else {
+//             var educator = 0;
+//         }
+//         var firstName = $("#inputFirstname").val();
+//         var lastName = $("#inputLastname").val();
+// //         if (educator < 0 || educator > 1){
             
-        } //error
+// //         } //error
 
-        var postString = 'username='+ username + '&password='+ password + '&educator=' + educator + '&firstName=' + firstName + '&lastName=' + lastName;
-        if(username == '' || password == '' || firstName == '' || lastName = '') {
-          alert("All Fields are Required");
-        }
-        else {
-          $.ajax({
-            type: "POST",
-            url: "createAccount.php",
-            data: postString,
-            cache: false,
-            success: function(result){
-              alert(result);
-              $('#createAcc')[0].reset();
-            }
-          });
-        }
-        return false;
-      });
-    });
+//         var postString = 'username='+ username + '&password='+ password + '&educator=' + educator + '&firstName=' + firstName + '&lastName=' + lastName;
+//         if(username == '' || password == '' || firstName == '' || lastName == '') {
+//           alert("All Fields are Required");
+//         }
+//         else {
+//           $.ajax({
+//             type: "POST",
+//             url: "createAccount.php",
+//             data: postString,
+//             cache: false,
+//             success: function(result){
+//               alert(result);
+//               $('#createAcc')[0].reset();
+//             }
+//           });
+//         }
+//         return false;
+//       });
+//     });
     /*
     function toggleDisabled(_checked) {
       document.getElementById('inputFirstname').disabled = _checked ? true : false;

@@ -12,7 +12,7 @@ if($mysqli->connect_error){
 if(!($stmt = $mysqli->prepare("INSERT INTO Community(Name, State, Country, SkillNeeded, UserComments) VALUES (?,?,?,?,?)"))){
     echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
-print_r($_POST); 
+//print_r($_POST); 
 
 if(!($stmt->bind_param("sssss",$_POST['Name'],$_POST['State'],$_POST['Country'],$_POST['Skill'],$_POST['Comment']))){
 	echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
@@ -20,8 +20,12 @@ if(!($stmt->bind_param("sssss",$_POST['Name'],$_POST['State'],$_POST['Country'],
 
 if(!$stmt->execute()){
    echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-} else {
-	echo "Added " . $stmt->affected_rows . " rows to Community.";    
 }
+
+$filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+$filePath = implode('/', $filePath);
+$redirect = "http://" . $_SERVER['HTTP_HOST'] . $filePath;
+header("Location: {$redirect}/communities.php", true);
+die();
     
 ?>

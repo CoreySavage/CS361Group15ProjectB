@@ -22,7 +22,8 @@ CREATE TABLE `Community` (
   `Country` varchar (255) NOT NULL,
   `SkillNeeded` varchar(255) NOT NULL,
   `UserComments` varchar(255),
-  PRIMARY KEY (`CommunityID`)      /*changed from professID to COmmunityID*/
+  PRIMARY KEY (`CommunityID`),      /*changed from professID to COmmunityID*/
+  UNIQUE KEY (`CommunityID`, `SkillNeeded`)
 ) ENGINE=InnoDB;
 
 
@@ -38,11 +39,11 @@ DROP TABLE IF EXISTS `Account_Community`;
 CREATE TABLE `Account_Community` (
   `AccountID` int(11) NOT NULL,
   `CommunityID` int(11) NOT NULL,
-  `SkillNeeded` varchar(255) NOT NULL,
-  `StartDate` DATE,
-  `EndDate` DATE,
-  PRIMARY KEY (`AccountID`, `CommunityID`, `SkillNeeded`),
+  `SkillID` varchar(255) NOT NULL,
+  `StartDate` DATE NOT NULL,
+  `EndDate` DATE NOT NULL,
+  PRIMARY KEY (`AccountID`, `CommunityID`),
   FOREIGN KEY (`AccountID`) REFERENCES `Account` (`AccountID`),
-  FOREIGN KEY (`CommunityID`) REFERENCES `Community` (`CommunityID`),
-  FOREIGN KEY (`SkillNeeded`) REFERENCES `Community` (`SkillNeeded`)
+  FOREIGN KEY (`CommunityID`, `SkillID`) REFERENCES `Community` (`CommunityID`,`SkillNeeded`),
+  FOREIGN KEY (`SkillID`) REFERENCES `Community` (`SkillNeeded`)
 ) ENGINE=InnoDB;
